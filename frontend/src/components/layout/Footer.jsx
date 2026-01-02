@@ -81,7 +81,10 @@ export const Footer = () => {
                   className="flex items-start gap-3 text-[#888680] hover:text-[#d9fb06] transition-colors"
                 >
                   <Phone className="w-5 h-5 mt-0.5 flex-shrink-0" />
-                  <span className="body-small">{companyInfo.phone}</span>
+                  <div className="body-small">
+                    <div>{companyInfo.phone}</div>
+                    {companyInfo.phoneSecondary && <div>{companyInfo.phoneSecondary}</div>}
+                  </div>
                 </a>
               </li>
               <li>
