@@ -9,6 +9,9 @@ import { Textarea } from '../components/ui/textarea';
 import { Label } from '../components/ui/label';
 import { Card } from '../components/ui/card';
 import { toast } from 'sonner';
+import axios from 'axios';
+
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({
@@ -30,13 +33,16 @@ const ContactPage = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Mock submission - will be replaced with actual API call
-    setTimeout(() => {
-      console.log('Contact form submitted:', formData);
-      toast.success('Message sent successfully! We will contact you within 24 hours.');
+    try {
+      const response = await axios.post(`${BACKEND_URL}/api/quote/request`, formData);
+      toast.success(response.data.message || 'Quote request sent successfully! We will contact you within 24 hours.');
       setFormData({ name: '', email: '', phone: '', company: '', service: '', message: '' });
+    } catch (error) {
+      console.error('Quote submission error:', error);
+      toast.error(error.response?.data?.detail || 'Failed to send message. Please try again or call us directly.');
+    } finally {
       setIsSubmitting(false);
-    }, 1000);
+    }
   };
 
   const contactInfo = [
