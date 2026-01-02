@@ -49,8 +49,8 @@ const ContactPage = () => {
     {
       icon: Phone,
       title: "Phone",
-      content: companyInfo.phone,
-      link: `tel:${companyInfo.phone}`
+      content: `${companyInfo.phone}\n${companyInfo.phoneSecondary}`,
+      link: `tel:${companyInfo.phone.replace(/\s/g, '')}`
     },
     {
       icon: Mail,
