@@ -105,12 +105,12 @@ const ContactPage = () => {
                   {info.link ? (
                     <a 
                       href={info.link}
-                      className="body-small text-[#888680] hover:text-[#d9fb06] transition-colors"
+                      className="body-small text-[#888680] hover:text-[#d9fb06] transition-colors whitespace-pre-line"
                     >
                       {info.content}
                     </a>
                   ) : (
-                    <p className="body-small text-[#888680]">{info.content}</p>
+                    <p className="body-small text-[#888680] whitespace-pre-line">{info.content}</p>
                   )}
                 </Card>
               ))}
